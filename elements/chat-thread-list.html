@@ -2,6 +2,7 @@
 <link rel="import" href="../components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../components/iron-icons/iron-icons.html">
+<link rel="import" href="../components/iron-icons/communication-icons.html">
 <link rel="import" href="../components/paper-badge/paper-badge.html">
 <link rel="import" href="../components/paper-menu/paper-menu.html">
 <link rel="import" href="../components/paper-item/paper-item.html">
@@ -21,7 +22,7 @@
         <paper-item>
           <paper-item-body two-line>
             <div>
-              <iron-icon icon="info-outline" hidden$="{{item.read}}"></iron-icon>
+              <iron-icon icon="communication:textsms" hidden$="{{item.read}}"></iron-icon>
               <span>{{item.threadName}}</span>
             </div>
             <div secondary>{{item.lastMessage}}</div>
