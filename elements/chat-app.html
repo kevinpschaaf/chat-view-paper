@@ -16,8 +16,8 @@
   <template>
     <paper-drawer-panel>
       <iron-ajax url="threads.json" last-response="{{threads}}" auto></iron-ajax>
-      <chat-thread-list drawer threads="{{threads}}"></chat-thread-list>
-      <chat-message-list main></chat-message-list>
+      <chat-thread-list drawer threads="{{threads}}" selected-thread="{{selectedThread}}"></chat-thread-list>
+      <chat-message-list main thread='{"messages": [{"authorName": "One"}, {"authorName": "Two"}]}'></chat-message-list>
     </paper-drawer-panel>
   </template>
 
