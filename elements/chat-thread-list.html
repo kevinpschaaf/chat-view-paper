@@ -2,6 +2,7 @@
 <link rel="import" href="../components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../components/paper-item/paper-item.html">
+<link rel="import" href="../components/paper-item/paper-item-body.html">
 <link rel="import" href="../components/iron-icons/iron-icons.html">
 
 <dom-module id="chat-thread-list">
@@ -12,7 +13,12 @@
       <div class="title">Threads</div>
     </paper-toolbar>
     <template is="dom-repeat" items="{{threads}}">
-      <paper-item>{{item.threadName}}</paper-item>
+      <paper-item>
+        <paper-item-body two-line>
+          <div>{{item.threadName}}</div>
+          <div secondary>{{item.lastMessage}}</div>
+        </paper-item-body>
+      </paper-item>
     </template>
   </template>
 

@@ -1,4 +1,5 @@
 <link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../components/paper-drawer-panel/paper-drawer-panel.html">
 <link rel="import" href="chat-thread-list.html">
 <link rel="import" href="chat-message-list.html">
@@ -14,7 +15,8 @@
 
   <template>
     <paper-drawer-panel>
-      <chat-thread-list drawer threads='[{"threadName": "One"}, {"threadName": "Two"}]'></chat-thread-list>
+      <iron-ajax url="threads.json" last-response="{{threads}}" auto></iron-ajax>
+      <chat-thread-list drawer threads="{{threads}}"></chat-thread-list>
       <chat-message-list main></chat-message-list>
     </paper-drawer-panel>
   </template>
