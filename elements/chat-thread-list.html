@@ -5,6 +5,7 @@
 <link rel="import" href="../components/paper-item/paper-item.html">
 <link rel="import" href="../components/paper-item/paper-item-body.html">
 <link rel="import" href="../components/iron-icons/iron-icons.html">
+<link rel="import" href="../components/iron-icons/communication-icons.html">
 
 <dom-module id="chat-thread-list">
 
@@ -18,7 +19,10 @@
       <template is="dom-repeat" items="{{threads}}">
         <paper-item>
           <paper-item-body two-line>
-            <div>{{item.threadName}}</div>
+            <div>
+              <iron-icon icon="communication:textsms" hidden$="{{item.read}}"></iron-icon>
+              <span>{{item.threadName}}</span>
+            </div>
             <div secondary>{{item.lastMessage}}</div>
           </paper-item-body>
         </paper-item>
@@ -54,6 +58,7 @@
 
       _selectedIndexChanged: function(idx) {
         this.$.selector.select(this.threads[idx]);
+        this.set('selectedThread.read', true);
       }
 
     });
