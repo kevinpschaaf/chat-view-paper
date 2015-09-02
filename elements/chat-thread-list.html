@@ -13,7 +13,8 @@
       <paper-icon-button icon="inbox"></paper-icon-button>
       <div class="title">Threads</div>
     </paper-toolbar>
-    <paper-menu>
+    <array-selector id="selector" items="{{threads}}" selected="{{selectedThread}}"></array-selector>
+    <paper-menu selected="{{_selectedIndex}}">
       <template is="dom-repeat" items="{{threads}}">
         <paper-item>
           <paper-item-body two-line>
@@ -32,8 +33,20 @@
 
       properties: {
 
-        threads: Array
+        threads: Array,
 
+        _selectedIndex: {
+          observer: '_selectedIndexChanged'
+        },
+
+        selectedThread: {
+          notify: true
+        }
+
+      },
+
+      _selectedIndexChanged: function(idx) {
+        this.$.selector.select(this.threads[idx]);
       }
 
     });
