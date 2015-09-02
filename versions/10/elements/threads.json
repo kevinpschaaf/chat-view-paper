@@ -1,0 +1,34 @@
+[{
+    "threadName": "Kevin and Rob",
+    "messages": [{
+        "authorName": "Kevin",
+        "text": "Hey Rob, did you get your slides ready for Polymer Summit?"
+    }, {
+        "authorName": "Rob",
+        "text": "Who me? You know I'm always prepared early for these things."
+    }, {
+        "authorName": "Kevin",
+        "text": "Figures, you're a pro.  Me? Finished last night in the hotel. LOL"
+    }],
+    "lastMessage": "Figures, you're a pro.  Me? Finished last night in the hotel. LOL"
+}, {
+    "threadName": "Rob and Scott",
+    "messages": [{
+        "authorName": "Rob",
+        "text": "Do you know if there's there an emoji for hot sauce?"
+    }, {
+        "authorName": "Scott",
+        "text": "Hmmm, dunno.  Ask the emojineer on the team, she'll know."
+    }],
+    "lastMessage": "Hmmm, dunno.  Ask the emojineer on the team, she'll know."
+}, {
+    "threadName": "Steve and Chris",
+    "messages": [{
+        "authorName": "Steve",
+        "text": "I can't believe how easy it is to add a backend to Polymer using Firebase.  You did a killer job on that element."
+    }, {
+        "authorName": "Chris",
+        "text": "Thanks, man.  I agree, it's an awesome combination."
+    }],
+    "lastMessage": "Thanks, man.  I agree, it's an awesome combination."
+}]

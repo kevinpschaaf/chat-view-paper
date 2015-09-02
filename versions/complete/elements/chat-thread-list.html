@@ -1,0 +1,74 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../components/iron-icons/iron-icons.html">
+<link rel="import" href="../components/iron-icons/communication-icons.html">
+<link rel="import" href="../components/paper-badge/paper-badge.html">
+<link rel="import" href="../components/paper-menu/paper-menu.html">
+<link rel="import" href="../components/paper-item/paper-item.html">
+<link rel="import" href="../components/paper-item/paper-item-body.html">
+
+<dom-module id="chat-thread-list">
+
+  <template>
+    <paper-toolbar>
+      <paper-icon-button icon="inbox" id="inbox"></paper-icon-button>
+      <div class="title">Active threads</div>
+      <paper-badge label="{{_computeUnreadCount(threads.*)}}" for="inbox"></paper-badge>
+    </paper-toolbar>
+    <array-selector id="selector" items="{{threads}}" selected="{{selectedThread}}"></array-selector>
+    <paper-menu selected="{{_selectedIndex}}">
+      <template id="list" is="dom-repeat" items="{{threads}}">
+        <paper-item>
+          <paper-item-body two-line>
+            <div>
+              <iron-icon icon="communication:textsms" hidden$="{{item.read}}"></iron-icon>
+              <span>{{item.threadName}}</span>
+            </div>
+            <div secondary>{{item.lastMessage}}</div>
+          </paper-item-body>
+        </paper-item>
+      </template>
+    </paper-menu>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'chat-thread-list',
+
+      properties: {
+
+        threads: {
+          type: Array,
+          observer: '_threadsChanged'
+        },
+
+        _selectedIndex: {
+          observer: '_selectedIndexChanged'
+        },
+
+        selectedThread: {
+          notify: true
+        }
+      },
+
+      _threadsChanged: function() {
+        this._selectedIndex = 0;
+      },
+
+      _selectedIndexChanged: function(idx) {
+        this.$.selector.select(this.threads[idx]);
+        this.set('selectedThread.read', true);
+      },
+
+      _computeUnreadCount: function(info) {
+        return this.threads.reduce(function(prev, thread) {
+          return prev + (thread.read ? 0 : 1);
+        }, 0);
+      }
+
+    });
+  </script>
+
+</dom-module>

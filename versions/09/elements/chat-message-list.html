@@ -1,0 +1,69 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../components/iron-icons/iron-icons.html">
+<link rel="import" href="../components/paper-item/paper-item.html">
+<link rel="import" href="../components/paper-item/paper-item-body.html">
+<link rel="import" href="../components/paper-input/paper-input.html">
+
+<dom-module id="chat-message-list">
+
+  <style>
+
+    :host {
+      @apply(--layout-vertical);
+    }
+
+    .list {
+      @apply(--layout-flex);
+      overflow: auto;
+    }
+
+  </style>
+
+  <template>
+    <paper-toolbar>
+      <paper-icon-button icon="mail"></paper-icon-button>
+      <div class="title">{{thread.threadName}}</div>
+    </paper-toolbar>
+    <div class="list">
+      <template is="dom-repeat" items="{{thread.messages}}">
+        <paper-item>
+          <paper-item-body two-line>
+            <div>{{item.authorName}}</div>
+            <div secondary>{{item.text}}</div>
+          </paper-item-body>
+        </paper-item>
+      </template>
+    </div>
+    <paper-input label="New message:" on-keyup="_handleEnter"></paper-input>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'chat-message-list',
+
+      properties: {
+
+        thread: Object
+
+      },
+
+      _handleEnter: function(e) {
+        if (e.keyCode == 13) {
+          this.push('thread.messages', {
+            authorName: 'Kevin',
+            text: e.target.value
+          });
+          this.set('thread.lastMessage', e.target.value);
+          e.target.value = '';
+        }
+      }
+
+    });
+  </script>
+
+</dom-module>
+

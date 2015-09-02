@@ -1,0 +1,42 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../components/paper-menu/paper-menu.html">
+<link rel="import" href="../components/paper-item/paper-item.html">
+<link rel="import" href="../components/paper-item/paper-item-body.html">
+<link rel="import" href="../components/iron-icons/iron-icons.html">
+
+<dom-module id="chat-thread-list">
+
+  <template>
+    <paper-toolbar>
+      <paper-icon-button icon="inbox"></paper-icon-button>
+      <div class="title">Threads</div>
+    </paper-toolbar>
+    <paper-menu>
+      <template is="dom-repeat" items="{{threads}}">
+        <paper-item>
+          <paper-item-body two-line>
+            <div>{{item.threadName}}</div>
+            <div secondary>{{item.lastMessage}}</div>
+          </paper-item-body>
+        </paper-item>
+      </template>
+    </paper-menu>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'chat-thread-list',
+
+      properties: {
+
+        threads: Array
+
+      }
+
+    });
+  </script>
+
+</dom-module>

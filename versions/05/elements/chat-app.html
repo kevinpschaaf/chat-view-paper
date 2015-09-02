@@ -1,0 +1,32 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../components/paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="chat-thread-list.html">
+<link rel="import" href="chat-message-list.html">
+
+<dom-module id="chat-app">
+
+  <style>
+    :host {
+      font-family: 'Muli', 'Helvetica Neue', helvetica, arial;
+      display: block;
+    }
+  </style>
+
+  <template>
+    <paper-drawer-panel>
+      <iron-ajax url="threads.json" last-response="{{threads}}" auto></iron-ajax>
+      <chat-thread-list drawer threads="{{threads}}" selected-thread="{{selectedThread}}"></chat-thread-list>
+      <chat-message-list main thread='{"messages": [{"authorName": "One"}, {"authorName": "Two"}]}'></chat-message-list>
+    </paper-drawer-panel>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'chat-app'
+
+    });
+  </script>
+
+</dom-module>
