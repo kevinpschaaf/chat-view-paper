@@ -5,6 +5,7 @@
 <link rel="import" href="../components/iron-icons/iron-icons.html">
 <link rel="import" href="../components/paper-item/paper-item.html">
 <link rel="import" href="../components/paper-item/paper-item-body.html">
+<link rel="import" href="../components/paper-input/paper-input.html">
 
 <dom-module id="chat-message-list">
 
@@ -36,6 +37,7 @@
         </paper-item>
       </template>
     </div>
+    <paper-input label="New message:" on-keyup="_handleEnter"></paper-input>
   </template>
 
   <script>
@@ -47,6 +49,17 @@
 
         thread: Object
 
+      },
+
+      _handleEnter: function(e) {
+        if (e.keyCode == 13) {
+          this.push('thread.messages', {
+            authorName: 'Kevin',
+            text: e.target.value
+          });
+          this.set('thread.lastMessage', e.target.value);
+          e.target.value = '';
+        }
       }
 
     });
