@@ -47,17 +47,14 @@
 
       properties: {
 
-        thread: {
-          type: Object
-        },
+        thread: Object
 
-        currentUser: Object
       },
 
       _handleEnter: function(e) {
         if (e.keyCode == 13) {
           this.push('thread.messages', {
-            authorName: this.currentUser.name,
+            authorName: 'Kevin',
             text: e.target.value
           });
           this.set('thread.lastMessage', e.target.value);

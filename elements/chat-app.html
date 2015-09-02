@@ -18,8 +18,8 @@
     <!-- <firebase-collection location="https://polymer-demos.firebaseio.com/chat" data="{{threads}}"></firebase-collection> -->
     <iron-ajax url="threads.json" last-response="{{threads}}" auto></iron-ajax>
     <paper-drawer-panel>
-      <chat-thread-list drawer threads="{{threads}}" selected-thread="{{selected}}"></chat-thread-list>
-      <chat-message-list main thread="{{selected}}" current-user='{"name": "Kevin"}'></chat-message-list>
+      <chat-thread-list drawer threads="{{threads}}" selected-thread="{{selectedThread}}"></chat-thread-list>
+      <chat-message-list main thread="{{selectedThread}}"></chat-message-list>
     </paper-drawer-panel>
   </template>
 
