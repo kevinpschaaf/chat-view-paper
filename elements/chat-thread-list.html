@@ -33,7 +33,10 @@
 
       properties: {
 
-        threads: Array,
+        threads: {
+          type: Array,
+          observer: '_threadsChanged'
+        },
 
         _selectedIndex: {
           observer: '_selectedIndexChanged'
@@ -43,6 +46,10 @@
           notify: true
         }
 
+      },
+
+      _threadsChanged: function() {
+        this._selectedIndex = 0;
       },
 
       _selectedIndexChanged: function(idx) {
