@@ -47,14 +47,26 @@
 
       properties: {
 
-        thread: Object
+        thread: Object,
 
+        user: Object
+
+      },
+
+      observers: [
+
+        '_updateLastReadMessage(thread.id, thread.messages.length, user)'
+
+      ],
+
+      _updateLastReadMessage: function(id, length, user) {
+        this.set(['user.lastReadMessage', id], length);
       },
 
       _handleEnter: function(e) {
         if (e.keyCode == 13) {
           this.push('thread.messages', {
-            authorName: 'Kevin',
+            authorName: this.user.name,
             text: e.target.value
           });
           this.set('thread.lastMessage', e.target.value);

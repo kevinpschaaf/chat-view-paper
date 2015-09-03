@@ -1,5 +1,6 @@
 [{
-    "threadName": "Kevin and Rob",
+    "id": "0",
+    "threadName": "Slide Status",
     "messages": [{
         "authorName": "Kevin",
         "text": "Hey Rob, did you get your slides ready for Polymer Summit?"
@@ -12,7 +13,8 @@
     }],
     "lastMessage": "Figures, you're a pro.  Me? Finished last night in the hotel. LOL"
 }, {
-    "threadName": "Rob and Scott",
+    "id": "1",
+    "threadName": "Emoji Chat",
     "messages": [{
         "authorName": "Rob",
         "text": "Do you know if there's there an emoji for hot sauce?"
@@ -22,7 +24,8 @@
     }],
     "lastMessage": "Hmmm, dunno.  Ask the emojineer on the team, she'll know."
 }, {
-    "threadName": "Steve and Chris",
+    "id": "2",
+    "threadName": "Element Talk",
     "messages": [{
         "authorName": "Steve",
         "text": "I can't believe how easy it is to add a backend to Polymer using Firebase.  You did a killer job on that element."

@@ -14,7 +14,7 @@
     <paper-toolbar>
       <paper-icon-button icon="inbox" id="inbox"></paper-icon-button>
       <div class="title">Threads</div>
-      <paper-badge for="inbox" label="{{_computeUnreadCount(threads.*)}}"></paper-badge>
+      <paper-badge for="inbox" label="{{_computeUnreadCount(user.lastReadMessage.*, threads.*)}}"></paper-badge>
     </paper-toolbar>
     <array-selector id="selector" items="{{threads}}" selected="{{selectedThread}}"></array-selector>
     <paper-menu selected="{{_selectedIndex}}">
@@ -22,7 +22,7 @@
         <paper-item>
           <paper-item-body two-line>
             <div>
-              <iron-icon icon="communication:textsms" hidden$="{{item.read}}"></iron-icon>
+              <iron-icon icon="communication:textsms" hidden$="{{_computeThreadRead(item.messages.length, item.id, user.lastReadMessage.*)}}"></iron-icon>
               <span>{{item.threadName}}</span>
             </div>
             <div secondary>{{item.lastMessage}}</div>
@@ -38,6 +38,8 @@
       is: 'chat-thread-list',
 
       properties: {
+
+        user: Object,
 
         threads: {
           type: Array,
@@ -60,13 +62,16 @@
 
       _selectedIndexChanged: function(idx) {
         this.$.selector.select(this.threads[idx]);
-        this.set('selectedThread.read', true);
       },
 
-      _computeUnreadCount: function(info) {
-        return info.base.reduce(function(prev, thread) {
-          return prev + (thread.read ? 0 : 1);
+      _computeUnreadCount: function(lastReadMessageInfo, threadsInfo) {
+        return threadsInfo.base.reduce(function(prev, thread) {
+          return prev + (lastReadMessageInfo.base[thread.id] == thread.messages.length ? 0 : 1);
         }, 0);
+      },
+
+      _computeThreadRead: function(length, id, lastReadMessageInfo) {
+        return length == lastReadMessageInfo.base[id];
       }
 
     });
