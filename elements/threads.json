@@ -1,36 +1,36 @@
 [{
     "id": "0",
-    "threadName": "Slide Status",
+    "title": "Slide Status",
     "messages": [{
-        "authorName": "Kevin",
+        "user": "Kevin",
         "text": "Hey Rob, did you get your slides ready for Polymer Summit?"
     }, {
-        "authorName": "Rob",
+        "user": "Rob",
         "text": "Who me? You know I'm always prepared early for these things."
     }, {
-        "authorName": "Kevin",
+        "user": "Kevin",
         "text": "Figures, you're a pro.  Me? Finished last night in the hotel. LOL"
     }],
     "lastMessage": "Figures, you're a pro.  Me? Finished last night in the hotel. LOL"
 }, {
     "id": "1",
-    "threadName": "Emoji Chat",
+    "title": "Emoji Chat",
     "messages": [{
-        "authorName": "Rob",
+        "user": "Rob",
         "text": "Do you know if there's there an emoji for hot sauce?"
     }, {
-        "authorName": "Scott",
+        "user": "Scott",
         "text": "Hmmm, dunno.  Ask the emojineer on the team, she'll know."
     }],
     "lastMessage": "Hmmm, dunno.  Ask the emojineer on the team, she'll know."
 }, {
     "id": "2",
-    "threadName": "Element Talk",
+    "title": "Element Talk",
     "messages": [{
-        "authorName": "Steve",
+        "user": "Steve",
         "text": "I can't believe how easy it is to add a backend to Polymer using Firebase.  You did a killer job on that element."
     }, {
-        "authorName": "Chris",
+        "user": "Chris",
         "text": "Thanks, man.  I agree, it's an awesome combination."
     }],
     "lastMessage": "Thanks, man.  I agree, it's an awesome combination."

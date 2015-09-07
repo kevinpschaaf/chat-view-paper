@@ -1,49 +1,61 @@
 <link rel="import" href="../components/polymer/polymer.html">
-<link rel="import" href="../components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../components/paper-menu-button/paper-menu-button.html">
 <link rel="import" href="../components/iron-icons/iron-icons.html">
-<link rel="import" href="../components/paper-item/paper-item.html">
-<link rel="import" href="../components/paper-item/paper-item-body.html">
 <link rel="import" href="../components/paper-input/paper-input.html">
+<link rel="import" href="../components/paper-item/paper-item.html">
+<link rel="import" href="../components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../components/paper-item/paper-item-body.html">
 
-<dom-module id="chat-message-list">
-
-  <style>
-
-    :host {
-      @apply(--layout-vertical);
-    }
-
-    .list {
-      @apply(--layout-flex);
-      overflow: auto;
-    }
-
-  </style>
+<dom-module id="chat-thread-view">
 
   <template>
+
+    <style>
+      :host {
+        @apply(--layout-vertical);
+      }
+      .list {
+        @apply(--layout-flex);
+        overflow: auto;
+      }
+      .dropdown-content,
+      paper-input {
+        padding: 10px;
+      }
+    </style>
+
     <paper-toolbar>
       <paper-icon-button icon="mail"></paper-icon-button>
-      <div class="title">{{thread.threadName}}</div>
+      <div class="title">{{thread.title}}</div>
+      <paper-menu-button horizontal-align="right" vertical-align="top">
+        <paper-icon-button icon="more-vert" class="dropdown-trigger"></paper-icon-button>
+        <div class="dropdown-content">
+          <paper-input label="Thread name:" value="{{thread.title}}"></paper-input>
+        </div>
+      </paper-menu-button>
     </paper-toolbar>
+
     <div class="list">
       <template is="dom-repeat" items="{{thread.messages}}">
         <paper-item>
           <paper-item-body two-line>
-            <div>{{item.authorName}}</div>
+            <div>{{item.user}}</div>
             <div secondary>{{item.text}}</div>
           </paper-item-body>
         </paper-item>
       </template>
     </div>
-    <paper-input label="New message:" on-keyup="_handleEnter"></paper-input>
+
+    <paper-input label="New Message:" on-keyup="_handleInput"></paper-input>
+
   </template>
 
   <script>
     Polymer({
 
-      is: 'chat-message-list',
+      is: 'chat-thread-view',
 
       properties: {
 
@@ -63,11 +75,11 @@
         this.set(['user.lastReadMessage', id], length);
       },
 
-      _handleEnter: function(e) {
+      _handleInput: function(e) {
         if (e.keyCode == 13) {
           this.push('thread.messages', {
-            authorName: this.user.name,
-            text: e.target.value
+            text: e.target.value,
+            user: this.user.name
           });
           this.set('thread.lastMessage', e.target.value);
           e.target.value = '';

@@ -1,9 +1,9 @@
 <link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/paper-drawer-panel/paper-drawer-panel.html">
 <!-- <link rel="import" href="../components/firebase-element/firebase-collection.html"> -->
 <link rel="import" href="../components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../components/paper-drawer-panel/paper-drawer-panel.html">
 <link rel="import" href="chat-thread-list.html">
-<link rel="import" href="chat-message-list.html">
+<link rel="import" href="chat-thread-view.html">
 
 <dom-module id="chat-app">
 
@@ -16,10 +16,15 @@
 
   <template>
     <!-- <firebase-collection location="https://polymer-demos.firebaseio.com/chat" data="{{threads}}"></firebase-collection> -->
+    
     <iron-ajax url="threads.json" last-response="{{threads}}" auto></iron-ajax>
+
     <paper-drawer-panel>
-      <chat-thread-list drawer threads="{{threads}}" selected-thread="{{selectedThread}}" user="{{user}}"></chat-thread-list>
-      <chat-message-list main thread="{{selectedThread}}" user="{{user}}"></chat-message-list>
+
+      <chat-thread-list drawer user="{{user}}" threads="{{threads}}" selected-thread="{{selectedThread}}"></chat-thread-list>
+
+      <chat-thread-view main user="{{user}}" thread="{{selectedThread}}"></chat-thread-view>
+
     </paper-drawer-panel>
   </template>
 
@@ -30,7 +35,11 @@
 
       properties: {
 
-        user: Object
+        user: {
+          value: function() {
+            return {name: 'Kevin', lastReadMessage: {}};
+          }
+        }
 
       }
 
