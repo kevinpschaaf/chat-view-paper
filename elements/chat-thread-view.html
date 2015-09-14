@@ -1,3 +1,12 @@
+<!--
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
 <link rel="import" href="../components/polymer/polymer.html">
 <link rel="import" href="../components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
@@ -7,6 +16,8 @@
 <link rel="import" href="../components/paper-item/paper-item.html">
 <link rel="import" href="../components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../components/paper-item/paper-item-body.html">
+
+<link rel="import" href="input-header.html">
 
 <dom-module id="chat-thread-view">
 
@@ -20,22 +31,12 @@
         @apply(--layout-flex);
         overflow: auto;
       }
-      .dropdown-content,
       paper-input {
         padding: 10px;
       }
     </style>
 
-    <paper-toolbar>
-      <paper-icon-button icon="mail"></paper-icon-button>
-      <div class="title">{{thread.title}}</div>
-      <paper-menu-button horizontal-align="right" vertical-align="top">
-        <paper-icon-button icon="more-vert" class="dropdown-trigger"></paper-icon-button>
-        <div class="dropdown-content">
-          <paper-input label="Thread name:" value="{{thread.title}}"></paper-input>
-        </div>
-      </paper-menu-button>
-    </paper-toolbar>
+    <input-header label="{{thread.title}}"></input-header>
 
     <div class="list">
       <template is="dom-repeat" items="{{thread.messages}}">
