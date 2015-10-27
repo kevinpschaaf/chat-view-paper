@@ -1,5 +1,5 @@
 org=${1:-"kevinpschaaf"}
-repo=${2:-"chat-app-paper"}
+repo=${2:-"chat-view-paper"}
 branch=${3:-"master"}
 
 rm -rf deploy
