@@ -1,0 +1,26 @@
+{
+  "name": "chat-view-paper",
+  "version": "1.0.0",
+  "description": "Demo chat application presented at [Polymer Summit 2015](https://www.youtube.com/watch?v=ZDjiUmx51y8).",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.0"
+  },
+  "devDependencies": {
+    "gulp-connect": "^2.3.1",
+    "gulp-less": "^3.0.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
