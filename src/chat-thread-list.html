@@ -1,0 +1,91 @@
+<!--
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../bower_components/paper-badge/paper-badge.html">
+
+<dom-module id="chat-thread-list">
+
+  <template>
+
+    <paper-toolbar>
+      <paper-icon-button icon="inbox" id="inbox"></paper-icon-button>
+      <div class="title">Threadss</div>
+      <paper-badge for="inbox" label="{{_computeUnreadCount(user.lastReadMessage.*, threads.*)}}"></paper-badge>
+    </paper-toolbar>
+
+    <paper-menu selected="{{_selectedIndex}}">
+      <template is="dom-repeat" items="{{threads}}">
+        <paper-item>
+          <paper-item-body two-line>
+            <div>
+              <iron-icon icon="communication:textsms" hidden$="{{_computeThreadRead(item.messages.length, item.id, user.lastReadMessage.*)}}"></iron-icon>
+              <span>{{item.title}}</span>
+            </div>
+            <div secondary>{{item.lastMessage}}</div>
+          </paper-item-body>
+        </paper-item>
+      </template>
+    </paper-menu>
+
+    <array-selector id="selector" items="{{threads}}" selected-item="{{selectedThread}}"></array-selector>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'chat-thread-list',
+
+      properties: {
+
+        user: Object,
+
+        threads: {
+          type: Array,
+          observer: '_threadsChanged'
+        },
+
+        _selectedIndex: {
+          observer: '_selectedIndexChanged'
+        },
+
+        selectedThread: {
+          notify: true
+        }
+
+      },
+
+      _threadsChanged: function() {
+        this._selectedIndex = 0;
+      },
+
+      _selectedIndexChanged: function(idx) {
+        this.$.selector.select(this.threads[idx]);
+      },
+
+      _computeUnreadCount: function(lastReadMessageInfo, threadsInfo) {
+        return threadsInfo.base.reduce(function(prev, thread) {
+          return prev + (lastReadMessageInfo.base[thread.id] == thread.messages.length ? 0 : 1);
+        }, 0);
+      },
+
+      _computeThreadRead: function(length, id, lastReadMessageInfo) {
+        return length == lastReadMessageInfo.base[id];
+      }
+
+    });
+  </script>
+
+</dom-module>

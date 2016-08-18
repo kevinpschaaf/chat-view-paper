@@ -1,0 +1,9 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/chat-app.html",
+  "fragments": [
+    "src/chat-thread-list.html",
+    "src/chat-thread-view.html",
+    "src/input-header.html"
+  ]
+}

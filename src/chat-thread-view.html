@@ -1,0 +1,93 @@
+<!--
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/paper-item/paper-item-body.html">
+
+
+<dom-module id="chat-thread-view">
+
+  <template>
+
+    <style>
+      :host {
+        @apply(--layout-vertical);
+      }
+      .list {
+        @apply(--layout-flex);
+        overflow: auto;
+      }
+      paper-input {
+        padding: 10px;
+      }
+    </style>
+
+    <input-header label="{{thread.title}}"></input-header>
+
+    <div class="list">
+      <template is="dom-repeat" items="{{thread.messages}}">
+        <paper-item>
+          <paper-item-body two-line>
+            <div>{{item.user}}</div>
+            <div secondary>{{item.text}}</div>
+          </paper-item-body>
+        </paper-item>
+      </template>
+    </div>
+
+    <paper-input label="New Message:" on-keyup="_handleInput"></paper-input>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'chat-thread-view',
+
+      properties: {
+
+        thread: Object,
+
+        user: Object
+
+      },
+
+      observers: [
+
+        '_updateLastReadMessage(thread.id, thread.messages.length, user)'
+
+      ],
+
+      _updateLastReadMessage: function(id, length, user) {
+        this.set(['user.lastReadMessage', id], length);
+      },
+
+      _handleInput: function(e) {
+        if (e.keyCode == 13) {
+          this.push('thread.messages', {
+            text: e.target.value,
+            user: this.user.name
+          });
+          this.set('thread.lastMessage', e.target.value);
+          e.target.value = '';
+        }
+      }
+
+    });
+  </script>
+
+</dom-module>
+

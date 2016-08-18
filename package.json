@@ -1,0 +1,30 @@
+{
+  "name": "chat-view-app",
+  "version": "1.0.0",
+  "description": "This template is a starting point for building apps using a drawer-based layout.  The layout is provided by `app-layout` elements.",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "watch": {
+    "dev": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js,html",
+      "ignore": "",
+      "quiet": false
+    }
+  },
+  "scripts": {
+    "build": "polymer build",
+    "dev": "npm run build & polymer serve",
+    "test": "npm run build & polymer test",
+    "watch": "npm-watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-watch": "^0.1.6"
+  }
+}
